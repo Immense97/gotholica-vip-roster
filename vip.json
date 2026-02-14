@@ -1,0 +1,30 @@
+{
+  "updatedAt": null,
+  "guildId": null,
+  "tiers": [
+    {
+      "key": "tier1",
+      "roleId": "1148749102222409738",
+      "label": "TIER 1",
+      "members": []
+    },
+    {
+      "key": "tier2",
+      "roleId": "1148749216513007737",
+      "label": "TIER 2",
+      "members": []
+    },
+    {
+      "key": "tier3",
+      "roleId": "1148749409476149308",
+      "label": "TIER 3",
+      "members": []
+    },
+    {
+      "key": "mega",
+      "roleId": "1315092987461505095",
+      "label": "MEGA SUPPORTER",
+      "members": []
+    }
+  ]
+}

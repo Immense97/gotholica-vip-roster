@@ -7,5 +7,4 @@ PuffPuffPurr
 QuartzMorres
 Ralaigon
 Rushound
-ScieVR
 Sindre_Hammer

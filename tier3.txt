@@ -12,5 +12,4 @@ Plaguelike
 PuffPuffPurr
 Ralaigon
 Rushound
-ScieVR
 Sindre_Hammer

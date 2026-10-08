@@ -8,6 +8,7 @@ bweaves
 Clickers
 DarkCrim
 DeadlyThorn
+FuxxinMINT
 JisooStatic2
 odstnewlun
 Plaguelike

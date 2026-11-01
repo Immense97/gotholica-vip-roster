@@ -9,6 +9,7 @@ bweaves
 Clickers
 Dark Markhor
 DarkCrim
+Delta 666
 FuxxinMINT
 JisooStatic2
 Myhic
@@ -19,5 +20,4 @@ QuartzMorres
 Rushound
 shadowtalon0
 Tempest Rising
-Zarekai
 Zeiven

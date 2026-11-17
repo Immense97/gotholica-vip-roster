@@ -16,7 +16,7 @@ on:
       - tier1.txt
       - boosters.txt
   schedule:
-    - cron: "*/10 * * * *"   # backup: every 10 minutes, in case an update didn't trigger it
+    - cron: "*/5 * * * *"   # backup: every 10 minutes, in case an update didn't trigger it
   workflow_dispatch:          # adds a "Run workflow" button on GitHub
 
 permissions:

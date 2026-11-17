@@ -1,0 +1,65 @@
+name: Build roster.txt
+
+# Combines admins, blacklist, world creator and the six VIP tier files into ONE file (roster.txt)
+# so the world loads all of it in a single download. Keep editing the separate files exactly as before.
+on:
+  push:
+    branches: [main]
+    paths:
+      - admins.txt
+      - blacklist.txt
+      - worldcreator.txt
+      - holy.txt
+      - mega.txt
+      - tier3.txt
+      - tier2.txt
+      - tier1.txt
+      - boosters.txt
+  schedule:
+    - cron: "*/10 * * * *"   # backup: every 10 minutes, in case an update didn't trigger it
+  workflow_dispatch:          # adds a "Run workflow" button on GitHub
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-roster
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Combine the files
+        run: |
+          set -e
+          out=roster.txt.new
+          echo "# Built automatically. Don't edit this file by hand: edit the separate files instead." > "$out"
+          # ADMINS / BLACKLIST / CREATOR first, then the tiers (heading names must match the panel's Tier Names,
+          # highest tier first).
+          for pair in "ADMINS:admins.txt" "BLACKLIST:blacklist.txt" "CREATOR:worldcreator.txt" \
+                      "HOLY:holy.txt" "MEGA:mega.txt" "TIER 3:tier3.txt" "TIER 2:tier2.txt" "TIER 1:tier1.txt" "BOOST:boosters.txt"; do
+            name="${pair%%:*}"
+            file="${pair#*:}"
+            # A missing file is left out entirely, so the world loads that one separately instead.
+            if [ ! -f "$file" ]; then continue; fi
+            echo "" >> "$out"
+            echo "[$name]" >> "$out"
+            # strip Windows line endings and a byte-order mark, drop blank lines
+            sed -e 's/\r$//' -e '1s/^\xEF\xBB\xBF//' "$file" | grep -v '^[[:space:]]*$' >> "$out" || true
+          done
+          mv "$out" roster.txt
+
+      - name: Save roster.txt if it changed
+        run: |
+          git config user.name "roster-builder"
+          git config user.email "roster-builder@users.noreply.github.com"
+          git add roster.txt
+          if git diff --cached --quiet; then
+            echo "roster.txt is already up to date."
+          else
+            git commit -m "Update roster.txt"
+            git push
+          fi

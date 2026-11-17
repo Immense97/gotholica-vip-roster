@@ -79,6 +79,9 @@ wizard_idk
 [CREATOR]
 AznMenace
 
+[STAFFCODE]
+0223
+
 [HOLY]
 Bazzaroo
 Mixer Ghost

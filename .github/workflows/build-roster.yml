@@ -1,6 +1,6 @@
 name: Build roster.txt
 
-# Combines admins, blacklist, world creator and the six VIP tier files into ONE file (roster.txt)
+# Combines admins, blacklist, world creator, the staff code and the six VIP tier files into ONE file (roster.txt)
 # so the world loads all of it in a single download. Keep editing the separate files exactly as before.
 on:
   push:
@@ -9,6 +9,7 @@ on:
       - admins.txt
       - blacklist.txt
       - worldcreator.txt
+      - staffcode.txt
       - holy.txt
       - mega.txt
       - tier3.txt
@@ -16,7 +17,7 @@ on:
       - tier1.txt
       - boosters.txt
   schedule:
-    - cron: "*/5 * * * *"   # backup: every 10 minutes, in case an update didn't trigger it
+    - cron: "*/5 * * * *"    # backup: every 5 minutes (GitHub's fastest), in case an update didn't trigger it
   workflow_dispatch:          # adds a "Run workflow" button on GitHub
 
 permissions:
@@ -39,7 +40,7 @@ jobs:
           echo "# Built automatically. Don't edit this file by hand: edit the separate files instead." > "$out"
           # ADMINS / BLACKLIST / CREATOR first, then the tiers (heading names must match the panel's Tier Names,
           # highest tier first).
-          for pair in "ADMINS:admins.txt" "BLACKLIST:blacklist.txt" "CREATOR:worldcreator.txt" \
+          for pair in "ADMINS:admins.txt" "BLACKLIST:blacklist.txt" "CREATOR:worldcreator.txt" "STAFFCODE:staffcode.txt" \
                       "HOLY:holy.txt" "MEGA:mega.txt" "TIER 3:tier3.txt" "TIER 2:tier2.txt" "TIER 1:tier1.txt" "BOOST:boosters.txt"; do
             name="${pair%%:*}"
             file="${pair#*:}"

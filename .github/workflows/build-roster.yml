@@ -1,6 +1,6 @@
 name: Build roster.txt
 
-# Combines admins, blacklist, world creator, the staff code and the six VIP tier files into ONE file (roster.txt)
+# Combines admins, blacklist, world creator, the staff code, custom tags (MOMMY) and the six VIP tier files into ONE file (roster.txt)
 # so the world loads all of it in a single download. Keep editing the separate files exactly as before.
 on:
   push:
@@ -10,6 +10,7 @@ on:
       - blacklist.txt
       - worldcreator.txt
       - staffcode.txt
+      - mommy.txt
       - holy.txt
       - mega.txt
       - tier3.txt
@@ -40,7 +41,7 @@ jobs:
           echo "# Built automatically. Don't edit this file by hand: edit the separate files instead." > "$out"
           # ADMINS / BLACKLIST / CREATOR first, then the tiers (heading names must match the panel's Tier Names,
           # highest tier first).
-          for pair in "ADMINS:admins.txt" "BLACKLIST:blacklist.txt" "CREATOR:worldcreator.txt" "STAFFCODE:staffcode.txt" \
+          for pair in "ADMINS:admins.txt" "BLACKLIST:blacklist.txt" "CREATOR:worldcreator.txt" "STAFFCODE:staffcode.txt" "MOMMY:mommy.txt" \
                       "HOLY:holy.txt" "MEGA:mega.txt" "TIER 3:tier3.txt" "TIER 2:tier2.txt" "TIER 1:tier1.txt" "BOOST:boosters.txt"; do
             name="${pair%%:*}"
             file="${pair#*:}"
